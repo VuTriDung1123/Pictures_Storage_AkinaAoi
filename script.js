@@ -119,8 +119,7 @@ uploadBtn.addEventListener('click', async () => {
         formData.append('file', item.file);
         formData.append('upload_preset', UPLOAD_PRESET);
         formData.append('tags', item.selectedTag); // Gắn tag vào Cloudinary
-        // Yêu cầu trả về delete_token để xóa được ngay sau khi up
-        formData.append('return_delete_token', true); 
+        
 
         try {
             const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, {
