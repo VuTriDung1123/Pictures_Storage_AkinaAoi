@@ -1,6 +1,6 @@
 // ================= CẤU HÌNH (THAY CỦA BẠN VÀO) =================
-const CLOUD_NAME = "tên_cloud_của_bạn";
-const UPLOAD_PRESET = "tên_preset_của_bạn"; 
+const CLOUD_NAME = "dfhzav3gf";
+const UPLOAD_PRESET = "pictures_storage_akinaaoi"; 
 // ===============================================================
 
 // Danh sách Tags cố định của bạn
