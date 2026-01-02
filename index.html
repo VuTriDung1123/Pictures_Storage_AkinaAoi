@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kho Ảnh Anime Của Tôi 🌸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <header>
+            <h1>🌸 Kho Ảnh Của Tôi 🌸</h1>
+            <p>Upload ảnh lên mây - Lấy link vĩnh viễn</p>
+        </header>
+
+        <div class="content-container">
+            <section class="upload-zone">
+                <h2>📤 Upload Ảnh Mới</h2>
+                <div class="card">
+                    <div class="input-group">
+                        <label for="fileInput" class="custom-file-upload">
+                            📁 Chọn ảnh từ máy
+                        </label>
+                        <input type="file" id="fileInput" accept="image/*">
+                    </div>
+
+                    <div id="preview-container" class="hidden">
+                        <p>Ảnh xem trước:</p>
+                        <img id="preview-img" src="" alt="Preview">
+                    </div>
+
+                    <button id="uploadBtn" disabled>✨ Bắt đầu Upload ✨</button>
+                    <p id="status-text"></p>
+                </div>
+            </section>
+
+            <section class="gallery-zone">
+                <h2>💖 Danh Sách Ảnh Đã Up</h2>
+                <div id="gallery-list">
+                    <p class="empty-msg">Chưa có ảnh nào được up hôm nay...</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
