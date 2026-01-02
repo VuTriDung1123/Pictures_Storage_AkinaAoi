@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kho Ảnh Anime Của Tôi 🌸</title>
+    <title>My Portfolio Storage 📦</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -11,35 +11,53 @@
 
     <div class="main-wrapper">
         <header>
-            <h1>🌸 Kho Ảnh Của Tôi 🌸</h1>
-            <p>Upload ảnh lên mây - Lấy link vĩnh viễn</p>
+            <h1>🌸 Kho Ảnh Portfolio Manager 🌸</h1>
         </header>
 
         <div class="content-container">
-            <section class="upload-zone">
-                <h2>📤 Upload Ảnh Mới</h2>
-                <div class="card">
-                    <div class="input-group">
-                        <label for="fileInput" class="custom-file-upload">
-                            📁 Chọn ảnh từ máy
-                        </label>
-                        <input type="file" id="fileInput" accept="image/*">
-                    </div>
+            <section class="gallery-zone">
+                <div class="gallery-header">
+                    <h2>💖 Thư Viện Ảnh (<span id="total-img">0</span>)</h2>
+                    
+                    <div class="filter-bar">
+                        <select id="filterTag">
+                            <option value="all">🌈 Tất cả Tags</option>
+                            </select>
+                        
+                        <select id="sortTime">
+                            <option value="newest">⏰ Mới nhất trước</option>
+                            <option value="oldest">🕰️ Cũ nhất trước</option>
+                        </select>
 
-                    <div id="preview-container" class="hidden">
-                        <p>Ảnh xem trước:</p>
-                        <img id="preview-img" src="" alt="Preview">
+                        <button id="clearLocalBtn" class="danger-btn" title="Xóa dữ liệu trình duyệt (Ảnh trên Cloud vẫn còn)">🗑️ Reset List</button>
                     </div>
+                </div>
 
-                    <button id="uploadBtn" disabled>✨ Bắt đầu Upload ✨</button>
-                    <p id="status-text"></p>
+                <div id="gallery-list" class="gallery-grid">
+                    <div class="empty-state">Chưa có ảnh nào được lưu...</div>
                 </div>
             </section>
 
-            <section class="gallery-zone">
-                <h2>💖 Danh Sách Ảnh Đã Up</h2>
-                <div id="gallery-list">
-                    <p class="empty-msg">Chưa có ảnh nào được up hôm nay...</p>
+            <section class="upload-zone">
+                <h2>📤 Upload Ảnh</h2>
+                <div class="card">
+                    <div class="input-group">
+                        <label for="fileInput" class="custom-file-upload">
+                            📁 Chọn tối đa 10 ảnh
+                        </label>
+                        <input type="file" id="fileInput" accept="image/*" multiple> 
+                    </div>
+
+                    <div id="preview-list" class="preview-list"></div>
+
+                    <div class="upload-actions">
+                        <button id="uploadBtn" disabled>✨ Upload Ngay ✨</button>
+                        <p id="status-text"></p>
+                    </div>
+                    
+                    <div class="note">
+                        <small>💡 Mẹo: Ảnh sẽ được tự động nén nhẹ để tiết kiệm dung lượng.</small>
+                    </div>
                 </div>
             </section>
         </div>
