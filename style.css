@@ -185,3 +185,20 @@ select {
 .btn-del { width: 30px; background: #ff4d4d; color: white; border: none; padding: 5px; border-radius: 4px; cursor: pointer; font-size: 11px; }
 
 .empty-state { width: 100%; text-align: center; padding: 40px; color: #999; grid-column: 1 / -1; }
+
+/* --- Thêm vào cuối file style.css --- */
+
+/* Hiệu ứng khi kéo file vào vùng Upload */
+.upload-zone .card.drag-active {
+    background-color: #ffe6ee; /* Nền hồng nhạt */
+    border-color: var(--dark-pink); /* Viền đậm lên */
+    transform: scale(1.02); /* Phóng to nhẹ */
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.4); /* Phát sáng */
+    transition: all 0.2s ease;
+}
+
+/* Chỉnh lại vùng drop zone cho dễ kéo */
+.upload-zone .card {
+    transition: all 0.2s ease;
+    border: 2px dashed transparent; /* Chuẩn bị sẵn viền */
+}

@@ -24,6 +24,7 @@ const filterTag = document.getElementById('filterTag');
 const sortTime = document.getElementById('sortTime');
 const totalImg = document.getElementById('total-img');
 const clearLocalBtn = document.getElementById('clearLocalBtn');
+const dropZone = document.querySelector('.upload-zone .card');
 
 // Biến lưu trữ file đang chờ upload
 let filesQueue = []; 
@@ -258,3 +259,68 @@ function saveToLocal() {
 // Lắng nghe sự kiện lọc/sắp xếp
 filterTag.addEventListener('change', renderGallery);
 sortTime.addEventListener('change', renderGallery);
+
+function handleFiles(files) {
+    // Chuyển FileList thành Array
+    let newFiles = Array.from(files);
+
+    // KIỂM TRA: Nếu kéo quá 10 ảnh
+    if (newFiles.length > 10) {
+        alert("⚠️ Bạn đã kéo quá 10 ảnh! Hệ thống chỉ lấy 10 ảnh đầu tiên thôi nhé.");
+        newFiles = newFiles.slice(0, 10); // Cắt lấy 10 cái đầu
+    }
+
+    // KIỂM TRA: Cộng dồn với hàng chờ hiện tại có lố 10 không
+    if (filesQueue.length + newFiles.length > 10) {
+        alert(`Hàng chờ đang có ${filesQueue.length} ảnh. Bạn chỉ được thêm tối đa ${10 - filesQueue.length} ảnh nữa thôi!`);
+        // Lấy số lượng còn thiếu để lấp đầy
+        const slotsLeft = 10 - filesQueue.length;
+        if (slotsLeft > 0) {
+            newFiles = newFiles.slice(0, slotsLeft);
+        } else {
+            return; // Hết chỗ rồi
+        }
+    }
+
+    // Thêm vào hàng chờ
+    newFiles.forEach(file => {
+        // Kiểm tra xem có phải ảnh không (tránh kéo nhầm file exe, pdf...)
+        if (file.type.startsWith('image/')) {
+            filesQueue.push({ file: file, selectedTag: MY_TAGS[0] });
+        }
+    });
+
+    renderPreviewList();
+    updateUploadButton();
+}
+
+// 3. Sự kiện Click chọn file truyền thống
+fileInput.addEventListener('change', (e) => {
+    handleFiles(e.target.files);
+    // Reset input để chọn lại file trùng tên vẫn được
+    fileInput.value = ""; 
+});
+
+// 4. Các sự kiện Kéo & Thả (Drag & Drop)
+
+// Khi kéo file vào vùng chọn -> Bật hiệu ứng
+dropZone.addEventListener('dragover', (e) => {
+    e.preventDefault(); // Chặn trình duyệt mở ảnh
+    dropZone.classList.add('drag-active');
+});
+
+// Khi kéo ra ngoài hoặc thả tay -> Tắt hiệu ứng
+dropZone.addEventListener('dragleave', () => {
+    dropZone.classList.remove('drag-active');
+});
+
+dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-active'); // Tắt hiệu ứng
+    
+    // Lấy danh sách file được thả vào
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        handleFiles(e.dataTransfer.files);
+        e.dataTransfer.clearData(); // Dọn dẹp bộ nhớ
+    }
+});
